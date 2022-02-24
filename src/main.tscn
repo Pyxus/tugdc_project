@@ -1,0 +1,162 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://src/player/player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/textures/kenney_prototype/texture_08.png" type="Texture" id=2]
+[ext_resource path="res://assets/improved_default_env.tres" type="Environment" id=3]
+[ext_resource path="res://lib/nodes/tween_camera.gd" type="Script" id=4]
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_texture = ExtResource( 2 )
+uv1_triplanar = true
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 47.4846, 1, 3.95946 )
+
+[sub_resource type="BoxShape" id=5]
+extents = Vector3( 35.6943, 1.05128, 3.94573 )
+
+[sub_resource type="BoxShape" id=6]
+extents = Vector3( 5.34773, 1, 1.07852 )
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 5.45081, 1, 1.07852 )
+
+[sub_resource type="SpatialMaterial" id=8]
+albedo_texture = ExtResource( 2 )
+uv1_triplanar = true
+
+[sub_resource type="SpatialMaterial" id=9]
+albedo_texture = ExtResource( 2 )
+uv1_triplanar = true
+
+[sub_resource type="CylinderShape" id=7]
+radius = 34.6071
+height = 1.09403
+
+[sub_resource type="Curve3D" id=4]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -43.7566, -6.79493e-06, 0.258943, 0, 0, 0, 0, 0, 0, -27.9337, -6.79493e-06, 0.258943, 0, 0, 0, 0, 0, 0, -6.34811, -6.79493e-06, 0.161271, 0, 0, 0, 0, 0, 0, 1.51411, -6.79493e-06, 0.0442993, 0, 0, 0, 0, 0, 0, 16.0673, -6.79493e-06, 0.239645, 0, 0, 0, 0, 0, 0, 29.0577, -6.79493e-06, 0.141972, 0, 0, 0, 0, 0, 0, 36.9982, 1.52588e-05, 0.145601, 0, 0, 0, 0, 0, 0, 51.0258, 1.14441e-05, 0.259064, -6.52284, 6.79493e-06, 0.137487, 6.02813, -6.27958e-06, -0.127059, 70.8284, 8.46386e-06, 0.961008, -5.09158, 6.79493e-06, 2.16927, 4.00664, -6.79493e-06, -2.82339, 87.335, 8.46386e-06, -1.38313, -3.51827, 6.79493e-06, 5.46054, 3.51827, -6.79493e-06, -5.46054, 97.6883, 8.46386e-06, -10.955, -0.951477, 6.79493e-06, 6.49807, 0.841696, -6.01094e-06, -5.74833, 104.027, 1.52588e-05, -25.0276, 1.86108, 6.79493e-06, 5.25312, -1.86108, -6.79493e-06, -5.25312, 102.942, 1.52588e-05, -42.2736, 4.9866, 6.79493e-06, 3.29967, -4.9866, -6.79493e-06, -3.29967, 92.9855, 1.52588e-05, -54.1116, 7.6746, 6.79493e-06, 0.666744, -10.2703, -9.0931e-06, -0.892249, 76.6553, 1.52588e-05, -60.5465, 4.50585, 6.79493e-06, -5.20613, -4.93221, -7.43789e-06, 5.69876, 57.4179, 8.46386e-06, -55.4085, 4.61944, 0, -0.724295, -6.7795, 0, 1.06298, 48.0484, 1.52588e-05, -45.8307, 0, 0, 0, 0, 0, 0, 39.8085, 1.52588e-05, -45.2365, 0, 0, 0, 0, 0, 0, -46.4039, 1.52588e-05, -45.5337 ),
+"tilts": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
+}
+
+[node name="Main" type="Node"]
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -0.852886, 0, 0.522097, 0, 1, 0, -0.522097, 0, -0.852886, 0, 0, 0 )
+script = ExtResource( 4 )
+target = NodePath("../Level/Player/Position3D")
+
+[node name="Level" type="Spatial" parent="."]
+
+[node name="Solids" type="Spatial" parent="Level"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Floor" type="StaticBody" parent="Level/Solids"]
+
+[node name="CSGBox" type="CSGBox" parent="Level/Solids/Floor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.258485, 0, -0.00676727 )
+width = 95.0902
+depth = 7.63659
+material = SubResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Level/Solids/Floor"]
+shape = SubResource( 3 )
+
+[node name="Floor3" type="StaticBody" parent="Level/Solids"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.9159, -46.0377 )
+
+[node name="CSGBox" type="CSGBox" parent="Level/Solids/Floor3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.258485, 0, -0.00676727 )
+width = 95.0902
+depth = 7.63659
+material = SubResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Level/Solids/Floor3"]
+shape = SubResource( 3 )
+
+[node name="Floor2" type="StaticBody" parent="Level/Solids"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 68.3879, 15.2652, 0 )
+
+[node name="CSGBox" type="CSGBox" parent="Level/Solids/Floor2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.258484, 0, -0.00676727 )
+width = 71.6464
+depth = 7.63659
+material = SubResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Level/Solids/Floor2"]
+shape = SubResource( 5 )
+
+[node name="Platform" type="StaticBody" parent="Level/Solids"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.51174, 0 )
+
+[node name="CSGBox" type="CSGBox" parent="Level/Solids/Platform"]
+width = 10.6632
+depth = 1.82989
+material = SubResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Level/Solids/Platform"]
+shape = SubResource( 6 )
+
+[node name="Platform2" type="StaticBody" parent="Level/Solids"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.1097, 9.59475, 0 )
+
+[node name="CSGBox" type="CSGBox" parent="Level/Solids/Platform2"]
+width = 10.6632
+depth = 1.82989
+material = SubResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Level/Solids/Platform2"]
+shape = SubResource( 1 )
+
+[node name="Platform3" type="StaticBody" parent="Level/Solids"]
+transform = Transform( 0.862381, -0.50626, 0, 0.50626, 0.862381, 0, 0, 0, 1, 28.4995, 12.6935, 0 )
+
+[node name="CSGBox" type="CSGBox" parent="Level/Solids/Platform3"]
+width = 10.6632
+depth = 1.82989
+material = SubResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Level/Solids/Platform3"]
+shape = SubResource( 1 )
+
+[node name="TowerFloor" type="StaticBody" parent="Level/Solids"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 74.547, 15.8196, -29.216 )
+
+[node name="Tower" type="CSGCylinder" parent="Level/Solids/TowerFloor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000198364, 2.67376, -0.000263214 )
+radius = 23.712
+height = 50.0
+sides = 20
+material = SubResource( 8 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="Level/Solids/TowerFloor"]
+radius = 35.0
+sides = 20
+material = SubResource( 9 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Level/Solids/TowerFloor"]
+shape = SubResource( 7 )
+
+[node name="Player" parent="Level" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.885, 6.40143, 0 )
+path_follow = NodePath("../Path/PathFollow")
+
+[node name="Path" type="Path" parent="Level"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0 )
+curve = SubResource( 4 )
+
+[node name="PathFollow" type="PathFollow" parent="Level/Path"]
+transform = Transform( -1.49396e-07, -2.2796e-12, 0.999995, 0, 1, 2.27959e-12, -1, 3.40562e-19, -1.49395e-07, -43.7566, -6.79493e-06, 0.258943 )
+rotation_mode = 4
+loop = false
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.126372, 0.991983, 0, -0.991983, 0.126372, 0, 3.12142, 3.07869 )
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 3 )
+
+[editable path="Level/Player"]
