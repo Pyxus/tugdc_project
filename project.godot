@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "KinematicBody",
+"class": "KinematicPathFollower",
+"language": "GDScript",
+"path": "res://lib/nodes/3d/kinematic_path_follower.gd"
+}, {
 "base": "Object",
 "class": "Math",
 "language": "GDScript",
 "path": "res://lib/misc/math.gd"
 } ]
 _global_script_class_icons={
+"KinematicPathFollower": "",
 "Math": ""
 }
 
