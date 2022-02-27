@@ -42,16 +42,18 @@ _data = {
 [node name="Main" type="Node"]
 
 [node name="CameraGimbal" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 78.0744, 19.9079, 0 )
 script = ExtResource( 5 )
+orientation = Vector3( 0, 3.08286e-44, 0 )
 zoom = 15.0
 target = NodePath("../Level/Player")
 target_tracking/is_tracking = true
-target_tracking/track_orientation = Vector3( 0, 0, 0 )
+target_tracking/track_orientation = Vector3( 0, 90, 0 )
 target_tracking/tween_duration = 0.15
-target_tracking//tween_delay = 0.0
+target_tracking/tween_delay = 0.0
 
 [node name="Camera" type="Camera" parent="CameraGimbal"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4013e-45, 0, 15 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15 )
 current = true
 
 [node name="Level" type="Spatial" parent="."]

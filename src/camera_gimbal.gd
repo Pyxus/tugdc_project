@@ -17,7 +17,6 @@ export var target: NodePath setget set_target
 var tracking_orientation: Vector3
 var is_tracking: bool = true
 var tween_duration: float = .15
-var tween_delay: float = 0
 
 var _camera: Camera
 var _yaw_axis := Spatial.new()
@@ -53,10 +52,10 @@ func _process(_delta: float) -> void:
 		var orient_x := rad2deg(lerp_angle(deg2rad(orientation.x), deg2rad(_target.rotation_degrees.x - tracking_orientation.x), 1))
 		var orient_z := rad2deg(lerp_angle(deg2rad(orientation.z), deg2rad(_target.rotation_degrees.z - tracking_orientation.z), 1))
 		
-		_tween.interpolate_property(self, "orientation:y", orientation.y, orient_y, tween_duration, 0, 2, tween_delay)
-		_tween.interpolate_property(self, "orientation:x", orientation.x, orient_x, tween_duration, 0, 2, tween_delay)
-		_tween.interpolate_property(self, "orientation:z", orientation.z, orient_z, tween_duration, 0, 2, tween_delay)
-		_tween.interpolate_property(self, "translation", translation, _target.translation, tween_duration, 0, 2, tween_delay)
+		_tween.interpolate_property(self, "orientation:y", orientation.y, orient_y, tween_duration)
+		_tween.interpolate_property(self, "orientation:x", orientation.x, orient_x, tween_duration)
+		_tween.interpolate_property(self, "orientation:z", orientation.z, orient_z, tween_duration)
+		_tween.interpolate_property(self, "translation", translation, _target.translation, tween_duration)
 		
 		_tween.start()
 
@@ -79,12 +78,7 @@ func _get_property_list() -> Array:
 			name = "target_tracking/tween_duration",
 			type = TYPE_REAL,
 		})
-	
-		properties.append({
-			name = "target_tracking//tween_delay",
-			type = TYPE_REAL,
-		})
-		
+
 	return properties
 
 
@@ -96,8 +90,6 @@ func _set(property: String, value) -> bool:
 			tracking_orientation = value
 		"target_tracking/tween_duration":
 			tween_duration = value
-		"target_tracking//tween_delay":
-			tween_delay = value
 		_:
 			return false
 	
@@ -113,8 +105,6 @@ func _get(property: String):
 			return tracking_orientation
 		"target_tracking/tween_duration":
 			return tween_duration
-		"target_tracking//tween_delay":
-			return tween_delay
 	return null
 
 
