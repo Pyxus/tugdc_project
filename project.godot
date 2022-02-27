@@ -31,6 +31,10 @@ config/description="Game being developed for TUGDC"
 run/main_scene="res://src/main.tscn"
 config/icon="res://icon.png"
 
+[debug]
+
+gdscript/warnings/return_value_discarded=false
+
 [physics]
 
 common/enable_pause_aware_picking=true
