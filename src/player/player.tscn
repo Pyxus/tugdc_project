@@ -18,14 +18,10 @@ mesh = SubResource( 1 )
 
 [node name="CSGBox" type="CSGBox" parent="CSGMesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.753195, 0.0216617, -0.421624 )
-width = 1.157
-height = 0.856
-depth = 0.88
+width = 2.35
+height = 1.709
+depth = 0.125
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 shape = SubResource( 2 )
-
-[node name="Position3D" type="Position3D" parent="."]
-transform = Transform( -4.37114e-08, 0.224951, -0.97437, 0, 0.97437, 0.224951, 1, 9.83292e-09, -4.25911e-08, -12.3577, 4.09595, 0.477385 )
-visible = false

@@ -3,7 +3,7 @@
 [ext_resource path="res://src/player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/textures/kenney_prototype/texture_08.png" type="Texture" id=2]
 [ext_resource path="res://assets/improved_default_env.tres" type="Environment" id=3]
-[ext_resource path="res://lib/nodes/tween_camera.gd" type="Script" id=4]
+[ext_resource path="res://lib/nodes/3d/camera_gimbal.tscn" type="PackedScene" id=4]
 
 [sub_resource type="SpatialMaterial" id=2]
 albedo_texture = ExtResource( 2 )
@@ -41,10 +41,17 @@ _data = {
 
 [node name="Main" type="Node"]
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( -0.852886, 0, 0.522097, 0, 1, 0, -0.522097, 0, -0.852886, 0, 0, 0 )
-script = ExtResource( 4 )
-target = NodePath("../Level/Player/Position3D")
+[node name="CameraGimbal" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 78.0744, 19.9079, 0 )
+zoom = 15.0
+target = NodePath("../Level/Player")
+tracking_orientation = Vector3( 0, 90, 0 )
+
+[node name="InnerGimbal" parent="CameraGimbal" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="Camera" parent="CameraGimbal/InnerGimbal" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15 )
 
 [node name="Level" type="Spatial" parent="."]
 
@@ -140,7 +147,8 @@ material = SubResource( 9 )
 shape = SubResource( 7 )
 
 [node name="Player" parent="Level" instance=ExtResource( 1 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.885, 6.40143, 0 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 78.0744, 19.9079, 0 )
+path_to_follow = NodePath("../Path")
 
 [node name="Path" type="Path" parent="Level"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0 )
@@ -158,4 +166,4 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 3 )
 
-[editable path="Level/Player"]
+[editable path="CameraGimbal"]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://lib/nodes/3d/camera_gimbal.gd" type="Script" id=2]
+
+[node name="CameraGimbal" type="Position3D"]
+script = ExtResource( 2 )
+
+[node name="InnerGimbal" type="Position3D" parent="."]
+
+[node name="Camera" type="Camera" parent="InnerGimbal"]
+current = true
